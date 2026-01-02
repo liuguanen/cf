@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API 代理服务健康检查</title>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .status { padding: 10px; border-radius: 5px; margin: 10px 0; }
+        .healthy { background: #d4edda; color: #155724; }
+        .unhealthy { background: #f8d7da; color: #721c24; }
+        .testing { background: #fff3cd; color: #856404; }
+    </style>
+</head>
+<body>
+    <h1>API 代理服务状态</h1>
+    <div id="status" class="status testing">检测中...</div>
+    
+    <h2>服务信息</h2>
+    <ul>
+        <li>代理域名: api.123h.top</li>
+        <li>目标服务器: api1.123h.top:5000</li>
+        <li>部署平台: Cloudflare Pages</li>
+        <li>创建时间: 2026-01-03</li>
+    </ul>
+    
+    <script>
+    async function checkHealth() {
+        const statusDiv = document.getElementById('status');
+        
+        try {
+            // 测试代理服务
+            const startTime = Date.now();
+            const response = await fetch('/api/health');
+            const endTime = Date.now();
+            const latency = endTime - startTime;
+            
+            if (response.ok) {
+                statusDiv.className = 'status healthy';
+                statusDiv.innerHTML = `✅ 服务正常 (延迟: ${latency}ms)`;
+            } else {
+                statusDiv.className = 'status unhealthy';
+                statusDiv.innerHTML = `❌ 服务异常 (状态码: ${response.status})`;
+            }
+        } catch (error) {
+            statusDiv.className = 'status unhealthy';
+            statusDiv.innerHTML = `❌ 连接失败: ${error.message}`;
+        }
+    }
+    
+    // 页面加载时检查
+    checkHealth();
+    // 每30秒检查一次
+    setInterval(checkHealth, 30000);
+    </script>
+</body>
+</html>

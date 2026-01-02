@@ -1,0 +1,7 @@
+# API 代理规则
+/*                          http://api1.123h.top:5000/:splat         200
+/api/*                     http://api1.123h.top:5000/:splat         200
+
+# 健康检查端点
+/health                    200
+/health.html               200
