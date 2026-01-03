@@ -1,6 +1,7 @@
 {
-  "name": "cf-worker-proxy",
+  "name": "cf-proxy",
+  "version": "1.0.0",
   "scripts": {
-    "build": "echo 'No build needed'"
+    "build": "echo 'Build step completed' && exit 0"
   }
 }
