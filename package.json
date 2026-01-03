@@ -1,0 +1,6 @@
+{
+  "name": "cf-worker-proxy",
+  "scripts": {
+    "build": "echo 'No build needed'"
+  }
+}
