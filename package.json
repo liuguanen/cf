@@ -1,6 +1,0 @@
-{
-  "scripts": {
-    "build": "echo 'Cloudflare Pages Functions build step' && echo 'No compilation needed'",
-    "deploy": "echo 'Auto-deployed by Cloudflare Pages'"
-  }
-}
